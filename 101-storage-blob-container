@@ -8,9 +8,22 @@
                 "description": "The name of the Azure Storage account."
             }
         },
+        "storageAccountType": {
+          "type": "string",
+          "defaultValue": "Standard_LRS",
+          "allowedValues": [
+            "Standard_LRS",
+            "Standard_GRS",
+            "Standard_ZRS",
+            "Premium_LRS"
+          ],
+          "metadata": {
+            "description": "Storage Account type"
+          }
+        },
         "containerName": {
             "type": "string",
-            "defaultValue": "logs",
+            "defaultValue": "GEN-UNIQUE",
             "metadata": {
                 "description": "The name of the blob container."
             }
@@ -31,8 +44,7 @@
             "location": "[parameters('location')]",
             "kind": "StorageV2",
             "sku": {
-                "name": "Standard_LRS",
-                "tier": "Standard"
+              "name": "[parameters('storageAccountType')]"
             },
             "properties": {
                 "accessTier": "Hot"
