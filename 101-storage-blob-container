@@ -38,7 +38,7 @@
         }
     },
     "variables" : {
-      "storageAccountName": "[parameters('storageAccountName')]
+      "storageAccountName": "[parameters('storageAccountName')]"
     },
     "resources": [
     {
