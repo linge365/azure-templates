@@ -24,7 +24,7 @@
         },
         "containerName": {
             "type": "string",
-            "defaultValue": "GEN-UNIQUE",
+            "defaultValue": "[tolower(concat(uniquestring(deployment().name), 'blobc'))]",
             "metadata": {
                 "description": "The name of the blob container."
             }
@@ -39,7 +39,7 @@
     },
     "variables" : {
       "storageAccountName": "[parameters('storageAccountName')]",
-      "containerName": "[tolower(concat(parameters('containerName'), 'blobc'))]"
+      "containerName": "[parameters('containerName')]",
     },
     "resources": [
     {
