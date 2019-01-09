@@ -39,7 +39,7 @@
     },
     "variables" : {
       "storageAccountName": "[parameters('storageAccountName')]",
-      "containerName": "[tolower(concat(substring(parameters('containerName'),0,20),'blobc'))]"
+      "containerName": "[tolower(concat(parameters('containerName'), 'blobc'))]"
     },
     "resources": [
     {
