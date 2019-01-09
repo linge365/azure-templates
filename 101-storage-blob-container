@@ -55,11 +55,11 @@
         },
         "resources": [
         {
-            "name": "[concat('blob/', parameters('containerName'))]",
+            "name": "[concat('default/', parameters('containerName'))]",
             "type": "blobServices/containers",
             "apiVersion": "[providers('Microsoft.Storage','storageAccounts').apiVersions[0]]",
             "dependsOn": [
-                "[variables('storageAccountName')]"
+                "[concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]"
             ]
         }
         ]
