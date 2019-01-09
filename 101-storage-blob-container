@@ -2,6 +2,13 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "storageAccountName": {
+          "type": "string",
+          "defaultValue": "[tolower(concat(uniquestring(resourceGroup().id), 'sa'))]",
+          "metadata": {
+            "description": "The name of the Azure Storage Account."
+          }
+        },
         "storageAccountType": {
           "type": "string",
           "defaultValue": "Standard_LRS",
@@ -17,7 +24,7 @@
         },
         "containerName": {
             "type": "string",
-            "defaultValue": "GEN-UNIQUE",
+            "defaultValue": "[tolower(concat(uniquestring(parameters('storageAccountName')), 'blobc'))]",
             "metadata": {
                 "description": "The name of the blob container."
             }
@@ -30,8 +37,8 @@
             }
         }
     },
-    "variables": {
-    	"storageAccountName": "[concat(uniquestring(resourceGroup().id), 'standardsa')]"
+    "variables" : {
+      "storageAccountName": "[parameters('storageAccountName')]
     },
     "resources": [
     {
@@ -48,7 +55,7 @@
         },
         "resources": [
         {
-            "name": "[concat('default/', parameters('containerName'))]",
+            "name": "[concat('blob/', parameters('containerName'))]",
             "type": "blobServices/containers",
             "apiVersion": "2018-03-01-preview",
             "dependsOn": [
@@ -56,6 +63,13 @@
             ]
         }
         ]
-        }
-    ]
+    }
+    ],
+    "outputs": {
+      "storageAccountName": {
+        "type": "string",
+        "value": "[variables('storageAccountName')]"
+      }
+  }
+
 }
