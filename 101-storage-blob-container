@@ -57,7 +57,7 @@
         {
             "name": "[concat('blob/', parameters('containerName'))]",
             "type": "blobServices/containers",
-            "apiVersion": "2018-03-01-preview",
+            "apiVersion": "[providers('Microsoft.Storage','storageAccounts').apiVersions[0]]",
             "dependsOn": [
                 "[variables('storageAccountName')]"
             ]
