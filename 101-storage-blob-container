@@ -70,7 +70,7 @@
       "storageAccountName": {
         "type": "string",
         "value": "[variables('storageAccountName')]"
-      }
+      },
       "containerName": {
         "type": "string",
         "value": "[variables('containerName')]"
