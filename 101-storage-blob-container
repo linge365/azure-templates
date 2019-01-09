@@ -24,7 +24,7 @@
         },
         "containerName": {
             "type": "string",
-            "defaultValue": "[tolower(concat(uniquestring(parameters('storageAccountName')), 'blobc'))]",
+            "defaultValue": "GEN-UNIQUE",
             "metadata": {
                 "description": "The name of the blob container."
             }
@@ -39,6 +39,7 @@
     },
     "variables" : {
       "storageAccountName": "[parameters('storageAccountName')]"
+      "containerName": "[tolower(concat(substring(parameters('containerName'),0,20),'blobc'))]"
     },
     "resources": [
     {
@@ -55,7 +56,7 @@
         },
         "resources": [
         {
-            "name": "[concat('default/', parameters('containerName'))]",
+            "name": "[concat('default/', variables('containerName'))]",
             "type": "blobServices/containers",
             "apiVersion": "[providers('Microsoft.Storage','storageAccounts').apiVersions[0]]",
             "dependsOn": [
@@ -70,6 +71,9 @@
         "type": "string",
         "value": "[variables('storageAccountName')]"
       }
+      "containerName": {
+        "type": "string",
+        "value": "[variables('containerName')]"
+      }
   }
-
 }
