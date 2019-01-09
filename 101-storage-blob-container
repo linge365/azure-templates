@@ -39,7 +39,7 @@
     },
     "variables" : {
       "storageAccountName": "[parameters('storageAccountName')]",
-      "containerName": "[parameters('containerName')]",
+      "containerName": "[parameters('containerName')]"
     },
     "resources": [
     {
